@@ -3,48 +3,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B.sc PJC Python Programs | SFC PJC</title>
+  <title>Python Lab Practical Programs | SFC PJC</title>
+  
+  <!-- Prism.js for Colorful Python Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: #0f172a; color: #f8fafc; padding: 24px 16px; }
-    .container { max-width: 880px; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 24px; }
-    header h1 { font-size: 1.8rem; color: #38bdf8; margin-bottom: 8px; }
-    header p { color: #94a3b8; font-size: 0.95rem; }
-    
-    .search-box { width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #334155; background: #1e293b; color: #fff; font-size: 1rem; margin-bottom: 24px; outline: none; }
-    .search-box:focus { border-color: #38bdf8; }
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(22, 27, 46, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --accent: #818cf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
 
-    .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
-    .card-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #1e293b; border-bottom: 1px solid #334155; }
-    .card-header h3 { font-size: 1.05rem; color: #f1f5f9; }
-    
-    .copy-btn { background: #38bdf8; color: #0f172a; border: none; padding: 6px 14px; font-weight: 600; font-size: 0.85rem; border-radius: 6px; cursor: pointer; transition: 0.2s; }
-    .copy-btn:hover { background: #7dd3fc; }
-    .copy-btn.copied { background: #22c55e; color: #ffffff; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
 
-    pre { padding: 16px; overflow-x: auto; background: #0b1120; font-size: 0.9rem; line-height: 1.5; color: #e2e8f0; font-family: Consolas, "Courier New", Courier, monospace; }
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.1) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      padding: 40px 16px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .badge-top {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--primary);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Search Box */
+    .search-wrapper {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 16px 20px;
+      padding-left: 48px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-box:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-number {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #090d16;
+      font-weight: 700;
+      font-size: 0.85rem;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+    }
+
+    .card-header h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Copy Button */
+    .copy-btn {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary);
+      color: #090d16;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .copy-btn.copied {
+      background: #10b981;
+      border-color: #10b981;
+      color: #ffffff;
+    }
+
+    /* Code Block Custom Styling */
+    pre[class*="language-"] {
+      margin: 0 !important;
+      padding: 18px 20px !important;
+      background: #0b101b !important;
+      font-family: 'Fira Code', monospace !important;
+      font-size: 0.9rem !important;
+      line-height: 1.6 !important;
+      border-radius: 0 !important;
+      border: none !important;
+    }
+
+    code[class*="language-"] {
+      font-family: 'Fira Code', monospace !important;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.6rem; }
+      .card-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .copy-btn { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
     <header>
-      <h1>Python Lab Practical Programs</h1>
-      <p>Click "Copy" to instantly copy the code to your clipboard.</p>
+      <div class="badge-top">St. Francis College • BSc PJC</div>
+      <h1>Python Lab Manual</h1>
+      <p>Instant reference & 1-click clipboard copy for practical exams.</p>
     </header>
 
-    <input type="text" id="searchBar" class="search-box" placeholder="Search program (e.g., Recursion, Pandas, Dictionary, 8)..." onkeyup="filterPrograms()">
+    <div class="search-wrapper">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="searchBar" class="search-box" placeholder="Search program (e.g. Recursion, Matrix, Lab 8, Matplotlib)..." onkeyup="filterPrograms()">
+    </div>
 
     <div id="programList">
 
       <!-- Program 1 -->
       <div class="card">
         <div class="card-header">
-          <h3>1. Arithmetic Operations</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <div class="card-title-group">
+            <span class="card-number">01</span>
+            <h3>Arithmetic Operations</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         </div>
-        <pre><code># Write a Python program to perform arithmetic operations and display result.
+        <pre><code class="language-python"># Write a Python program to perform arithmetic operations and display result.
 
 # Declaring variables
 number1 = 15
@@ -68,10 +267,13 @@ print("Quotient:", quotient)</code></pre>
       <!-- Program 2 -->
       <div class="card">
         <div class="card-header">
-          <h3>2. Fibonacci Numbers</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <div class="card-title-group">
+            <span class="card-number">02</span>
+            <h3>Fibonacci Numbers</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         </div>
-        <pre><code># Program to print first n Fibonacci numbers
+        <pre><code class="language-python"># Program to print first n Fibonacci numbers
 
 n = int(input("Enter the value of n: "))
 
@@ -90,25 +292,21 @@ for i in range(n):
       <!-- Program 3 -->
       <div class="card">
         <div class="card-header">
-          <h3>3. Count Vowels and Consonants</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <div class="card-title-group">
+            <span class="card-number">03</span>
+            <h3>Count Vowels and Consonants</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         </div>
-        <pre><code># Implement a program that accepts a string and counts the number of vowels and consonants
+        <pre><code class="language-python"># Implement a program that accepts a string and counts the number of vowels and consonants
 
-# Enter a string
 text = input("Enter a string: ")
-
-# Convert the string to lower case
 text = text.lower()
 
-# Initialize counters
 vowel_count = 0
 consonant_count = 0
-
-# Define vowels
 vowels = "aeiou"
 
-# Count vowels and consonants
 for char in text:
     if char.isalpha():
         if char in vowels:
@@ -116,7 +314,6 @@ for char in text:
         else:
             consonant_count += 1
 
-# Display the results
 print("Number of vowels:", vowel_count)
 print("Number of consonants:", consonant_count)</code></pre>
       </div>
@@ -124,20 +321,21 @@ print("Number of consonants:", consonant_count)</code></pre>
       <!-- Program 4 -->
       <div class="card">
         <div class="card-header">
-          <h3>4. Student Details Dictionary</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <div class="card-title-group">
+            <span class="card-number">04</span>
+            <h3>Student Details (Dictionary)</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         </div>
-        <pre><code># Create a dictionary to store student details
+        <pre><code class="language-python"># Create a dictionary to store student details
 students = {
     "101": {"Name": "Abhishek", "age": 20, "grade": "A"},
     "102": {"Name": "Aastha", "age": 21, "grade": "B"},
     "103": {"Name": "Roshan", "age": 19, "grade": "A"}
 }
 
-# Enter a student ID
 student_id = input("Enter student ID to view details: ")
 
-# Display the details
 if student_id in students:
     print("Student Details")
     print("Name:", students[student_id]["Name"])
@@ -150,11 +348,13 @@ else:
       <!-- Program 5 -->
       <div class="card">
         <div class="card-header">
-          <h3>5. Break, Continue, and Pass Statements</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <div class="card-title-group">
+            <span class="card-number">05</span>
+            <h3>Break, Continue, and Pass</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         </div>
-        <pre><code>print("Demonstrating break:")
-
+        <pre><code class="language-python">print("Demonstrating break:")
 for i in range(1, 6):
     if i == 3:
         print("Breaking the loop at i =", i)
@@ -162,7 +362,6 @@ for i in range(1, 6):
     print("i =", i)
 
 print("\nDemonstrating continue:")
-
 for i in range(1, 6):
     if i == 3:
         print("Skipping i =", i)
@@ -170,7 +369,6 @@ for i in range(1, 6):
     print("i =", i)
 
 print("\nDemonstrating pass:")
-
 for i in range(1, 6):
     if i == 3:
         pass
@@ -181,20 +379,20 @@ for i in range(1, 6):
       <!-- Program 6 -->
       <div class="card">
         <div class="card-header">
-          <h3>6. NumPy Array Operations and Reshaping</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <div class="card-title-group">
+            <span class="card-number">06</span>
+            <h3>NumPy Operations & Reshaping</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
         </div>
-        <pre><code>import numpy as np
+        <pre><code class="language-python">import numpy as np
 
-# Create a Numpy array
 array1 = np.array([1, 2, 3, 4, 5, 6])
 print("Array1:", array1)
 
-# Create another array
 array2 = np.array([10, 20, 30, 40, 50, 60])
 print("Array2:", array2)
 
-# Perform element-wise operations
 sum_array = array1 + array2
 diff_array = array1 - array2
 div_array = array1 / array2
@@ -205,7 +403,6 @@ print("Element-wise Difference:", diff_array)
 print("Element-wise Division:", div_array)
 print("Element-wise Product:", product_array)
 
-# Reshape the array (from 1D to 2D)
 reshape_array = array1.reshape(2, 3)
 print("Reshaped array1 (2x3):\n", reshape_array)</code></pre>
       </div>
@@ -213,196 +410,8 @@ print("Reshaped array1 (2x3):\n", reshape_array)</code></pre>
       <!-- Program 7 -->
       <div class="card">
         <div class="card-header">
-          <h3>7. Pandas Series (Indexing, Slicing, Querying)</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-        </div>
-        <pre><code>import pandas as pd
-
-# Create pandas Series
-marks = pd.Series(
-    [85, 90, 78, 92, 88],
-    index=["abhishek", "astha", "rohan", "maya", "mohan"]
-)
-
-print("Student marks series:\n", marks)
-
-# Indexing
-print("Marks of Astha:", marks["astha"])
-print("Mark at 2nd position (by position):", marks.iloc[2])
-
-# Slicing
-print("\nSlicing from Astha to Maya:\n", marks["astha":"maya"])
-print("\nSlicing first 3 students:\n", marks[:3])
-
-# Querying
-print("\nStudents with marks > 85:\n", marks[marks > 85])</code></pre>
-      </div>
-
-      <!-- Program 8 -->
-      <div class="card">
-        <div class="card-header">
-          <h3>8. Pandas DataFrame (Sorting & Filtering)</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-        </div>
-        <pre><code>import pandas as pd
-
-# Create a dataset and save it as CSV
-data = {
-    "Name": ["Astha", "Abhishek", "Rohan", "Maya", "Mohan"],
-    "Marks": [85, 92, 78, 90, 88],
-    "Subject": ["Python", "OS", "CN", "Python", "OS"]
-}
-
-df = pd.DataFrame(data)
-df.to_csv("lab8.csv", index=False)
-
-# Load the dataset into Pandas DataFrame
-df = pd.read_csv("lab8.csv")
-
-print("Original DataFrame:\n", df)
-
-# Sorting by Marks in descending order
-sorted_df = df.sort_values(by="Marks", ascending=False)
-print("\nSorted DataFrame by Marks (Descending):\n", sorted_df)
-
-# Filtering students who scored more than 85
-filtered_df = df[df["Marks"] > 85]
-print("\nStudents with Marks > 85:\n", filtered_df)
-
-# Filtering students whose subject is Python
-filtered_df = df[df["Subject"] == "Python"]
-print("\nStudents with Python as elective:\n", filtered_df)</code></pre>
-      </div>
-
-      <!-- Program 9 -->
-      <div class="card">
-        <div class="card-header">
-          <h3>9. Count Occurrences of Each Word</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-        </div>
-        <pre><code># Get input from the user
-text = input("Enter a string: ")
-
-words = text.lower().split()
-result = []
-
-for word in words:
-    if word not in result:
-        count = words.count(word)
-        print(word, ":", count)
-        result.append(word)</code></pre>
-      </div>
-
-      <!-- Program 10 -->
-      <div class="card">
-        <div class="card-header">
-          <h3>10. List Operations (Insert, Delete, Update)</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-        </div>
-        <pre><code># Step 1: Create an initial list
-my_list = [10, 20, 30, 40, 50]
-print("Initial List:", my_list)
-
-# Step 2: Insert an element
-# Insert 25 at index 2
-my_list.insert(2, 25)
-print("After Inserting 25 at index 2:", my_list)
-
-# Step 3: Delete an element
-# Remove the value 40 from the list
-my_list.remove(40)
-print("After Deleting 40:", my_list)
-
-# Step 4: Update an element
-# Change the element at index 3 to 99
-my_list[3] = 99
-print("After Updating index 3 to 99:", my_list)</code></pre>
-      </div>
-
-      <!-- Program 11 -->
-      <div class="card">
-        <div class="card-header">
-          <h3>11. Factorial Using Recursion</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-        </div>
-        <pre><code># Factorial using recursion
-
-def factorial(n):
-    if n == 0 or n == 1:
-        return 1
-    else:
-        return n * factorial(n - 1)
-
-# User input
-num = int(input("Enter a number: "))
-
-if num < 0:
-    print("Factorial is not defined for negative numbers.")
-else:
-    result = factorial(num)
-    print(f"Factorial of {num} is: {result}")</code></pre>
-      </div>
-
-      <!-- Program 12 -->
-      <div class="card">
-        <div class="card-header">
-          <h3>12. Matplotlib (Line Graph and Bar Chart)</h3>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-        </div>
-        <pre><code>import matplotlib.pyplot as plt
-
-# Sample data
-students = ['Abhishek', 'Astha', 'Chetan', 'Rohan']
-marks = [85, 92, 78, 88]
-
-# Line Graph
-plt.plot(students, marks, marker='o', color='blue', label='Marks')
-plt.title("Line Graph: Student Marks")
-plt.xlabel("Students")
-plt.ylabel("Marks")
-plt.grid(True)
-plt.legend()
-plt.tight_layout()
-plt.show()
-
-# Bar Chart
-plt.bar(students, marks, color='green')
-plt.title("Bar Chart: Student Marks")
-plt.xlabel("Students")
-plt.ylabel("Marks")
-plt.tight_layout()
-plt.show()</code></pre>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    function copyCode(btn) {
-      const codeBlock = btn.closest('.card').querySelector('pre code');
-      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
-        btn.innerText = "Copied!";
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.innerText = "Copy";
-          btn.classList.remove('copied');
-        }, 1800);
-      });
-    }
-
-    function filterPrograms() {
-      const query = document.getElementById('searchBar').value.toLowerCase();
-      const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        const title = card.querySelector('h3').innerText.toLowerCase();
-        const code = card.querySelector('code').innerText.toLowerCase();
-        if (title.includes(query) || code.includes(query)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
-  </script>
-</body>
-</html>
+          <div class="card-title-group">
+            <span class="card-number">07</span>
+            <h3>Pandas Series Operations</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode
