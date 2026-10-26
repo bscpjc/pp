@@ -414,4 +414,202 @@ print("Reshaped array1 (2x3):\n", reshape_array)</code></pre>
             <span class="card-number">07</span>
             <h3>Pandas Series Operations</h3>
           </div>
-          <button class="copy-btn" onclick="copyCode
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        </div>
+        <pre><code class="language-python">import pandas as pd
+
+marks = pd.Series(
+    [85, 90, 78, 92, 88],
+    index=["abhishek", "astha", "rohan", "maya", "mohan"]
+)
+
+print("Student marks series:\n", marks)
+
+# Indexing
+print("Marks of Astha:", marks["astha"])
+print("Mark at 2nd position (by position):", marks.iloc[2])
+
+# Slicing
+print("\nSlicing from Astha to Maya:\n", marks["astha":"maya"])
+print("\nSlicing first 3 students:\n", marks[:3])
+
+# Querying
+print("\nStudents with marks > 85:\n", marks[marks > 85])</code></pre>
+      </div>
+
+      <!-- Program 8 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-number">08</span>
+            <h3>Pandas DataFrame Filter & Sort</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        </div>
+        <pre><code class="language-python">import pandas as pd
+
+data = {
+    "Name": ["Astha", "Abhishek", "Rohan", "Maya", "Mohan"],
+    "Marks": [85, 92, 78, 90, 88],
+    "Subject": ["Python", "OS", "CN", "Python", "OS"]
+}
+
+df = pd.DataFrame(data)
+df.to_csv("lab8.csv", index=False)
+
+df = pd.read_csv("lab8.csv")
+print("Original DataFrame:\n", df)
+
+sorted_df = df.sort_values(by="Marks", ascending=False)
+print("\nSorted DataFrame by Marks (Descending):\n", sorted_df)
+
+filtered_df = df[df["Marks"] > 85]
+print("\nStudents with Marks > 85:\n", filtered_df)
+
+filtered_df = df[df["Subject"] == "Python"]
+print("\nStudents with Python as elective:\n", filtered_df)</code></pre>
+      </div>
+
+      <!-- Program 9 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-number">09</span>
+            <h3>Word Frequency Counter</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        </div>
+        <pre><code class="language-python"># Count occurrences of each word
+text = input("Enter a string: ")
+
+words = text.lower().split()
+result = []
+
+for word in words:
+    if word not in result:
+        count = words.count(word)
+        print(word, ":", count)
+        result.append(word)</code></pre>
+      </div>
+
+      <!-- Program 10 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-number">10</span>
+            <h3>List Manipulation</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        </div>
+        <pre><code class="language-python">my_list = [10, 20, 30, 40, 50]
+print("Initial List:", my_list)
+
+# Insert 25 at index 2
+my_list.insert(2, 25)
+print("After Inserting 25 at index 2:", my_list)
+
+# Remove the value 40
+my_list.remove(40)
+print("After Deleting 40:", my_list)
+
+# Change the element at index 3 to 99
+my_list[3] = 99
+print("After Updating index 3 to 99:", my_list)</code></pre>
+      </div>
+
+      <!-- Program 11 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-number">11</span>
+            <h3>Factorial with Recursion</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        </div>
+        <pre><code class="language-python"># Factorial using recursion
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+num = int(input("Enter a number: "))
+
+if num < 0:
+    print("Factorial is not defined for negative numbers.")
+else:
+    result = factorial(num)
+    print(f"Factorial of {num} is: {result}")</code></pre>
+      </div>
+
+      <!-- Program 12 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-number">12</span>
+            <h3>Matplotlib (Line & Bar Chart)</h3>
+          </div>
+          <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+        </div>
+        <pre><code class="language-python">import matplotlib.pyplot as plt
+
+students = ['Abhishek', 'Astha', 'Chetan', 'Rohan']
+marks = [85, 92, 78, 88]
+
+# Line Graph
+plt.plot(students, marks, marker='o', color='blue', label='Marks')
+plt.title("Line Graph: Student Marks")
+plt.xlabel("Students")
+plt.ylabel("Marks")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# Bar Chart
+plt.bar(students, marks, color='green')
+plt.title("Bar Chart: Student Marks")
+plt.xlabel("Students")
+plt.ylabel("Marks")
+plt.tight_layout()
+plt.show()</code></pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Prism.js Script for Syntax Highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+  <script>
+    function copyCode(btn) {
+      const codeBlock = btn.closest('.card').querySelector('pre code');
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 1500);
+      });
+    }
+
+    function filterPrograms() {
+      const query = document.getElementById('searchBar').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        const code = card.querySelector('code').innerText.toLowerCase();
+        const number = card.querySelector('.card-number').innerText.toLowerCase();
+        if (title.includes(query) || code.includes(query) || number.includes(query)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
