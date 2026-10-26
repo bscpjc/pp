@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Lab Programs | Practical Codes</title>
+  <title>Python Lab Practical Programs | SFC PJC</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: #0f172a; color: #f8fafc; padding: 24px 16px; }
-    .container { max-width: 850px; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 28px; }
+    .container { max-width: 880px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 24px; }
     header h1 { font-size: 1.8rem; color: #38bdf8; margin-bottom: 8px; }
     header p { color: #94a3b8; font-size: 0.95rem; }
     
@@ -16,77 +16,363 @@
     .search-box:focus { border-color: #38bdf8; }
 
     .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
-    .card-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #334155; }
-    .card-header h3 { font-size: 1rem; color: #f1f5f9; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #1e293b; border-bottom: 1px solid #334155; }
+    .card-header h3 { font-size: 1.05rem; color: #f1f5f9; }
     
-    .copy-btn { background: #38bdf8; color: #0f172a; border: none; padding: 6px 12px; font-weight: 600; font-size: 0.85rem; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+    .copy-btn { background: #38bdf8; color: #0f172a; border: none; padding: 6px 14px; font-weight: 600; font-size: 0.85rem; border-radius: 6px; cursor: pointer; transition: 0.2s; }
     .copy-btn:hover { background: #7dd3fc; }
     .copy-btn.copied { background: #22c55e; color: #ffffff; }
 
-    pre { padding: 16px; overflow-x: auto; background: #0b1120; font-size: 0.9rem; line-height: 1.5; color: #e2e8f0; font-family: "Courier New", Courier, monospace; }
+    pre { padding: 16px; overflow-x: auto; background: #0b1120; font-size: 0.9rem; line-height: 1.5; color: #e2e8f0; font-family: Consolas, "Courier New", Courier, monospace; }
   </style>
 </head>
 <body>
 
   <div class="container">
     <header>
-      <h1>Python Practical Lab Programs</h1>
-      <p>Click "Copy" button to instantly copy code to your clipboard.</p>
+      <h1>Python Lab Practical Programs</h1>
+      <p>Click "Copy" to instantly copy the code to your clipboard.</p>
     </header>
 
-    <input type="text" id="searchBar" class="search-box" placeholder="Search program (e.g., Prime, Factorial, Matrix)..." onkeyup="filterPrograms()">
+    <input type="text" id="searchBar" class="search-box" placeholder="Search program (e.g., Recursion, Pandas, Dictionary, 8)..." onkeyup="filterPrograms()">
 
     <div id="programList">
 
       <!-- Program 1 -->
       <div class="card">
         <div class="card-header">
-          <h3>1. Check Prime Number</h3>
+          <h3>1. Arithmetic Operations</h3>
           <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         </div>
-        <pre><code>num = int(input("Enter number: "))
-if num > 1:
-    for i in range(2, int(num/2) + 1):
-        if (num % i) == 0:
-            print(num, "is not a prime number")
-            break
-    else:
-        print(num, "is a prime number")
-else:
-    print(num, "is not a prime number")</code></pre>
+        <pre><code># Write a Python program to perform arithmetic operations and display result.
+
+# Declaring variables
+number1 = 15
+number2 = 5
+
+# Arithmetic Operations
+sum_result = number1 + number2
+difference = number1 - number2
+product = number1 * number2
+quotient = number1 / number2
+
+# Display the results
+print("First Number:", number1)
+print("Second Number:", number2)
+print("Sum:", sum_result)
+print("Difference:", difference)
+print("Product:", product)
+print("Quotient:", quotient)</code></pre>
       </div>
 
       <!-- Program 2 -->
       <div class="card">
         <div class="card-header">
-          <h3>2. Factorial of a Number</h3>
+          <h3>2. Fibonacci Numbers</h3>
           <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         </div>
-        <pre><code>n = int(input("Enter number: "))
-fact = 1
-for i in range(1, n + 1):
-    fact *= i
-print(f"Factorial of {n} is: {fact}")</code></pre>
+        <pre><code># Program to print first n Fibonacci numbers
+
+n = int(input("Enter the value of n: "))
+
+a = 0
+b = 1
+
+print("First", n, "Fibonacci numbers are:")
+
+for i in range(n):
+    print(a, end=" ")
+    c = a + b
+    a = b
+    b = c</code></pre>
       </div>
 
       <!-- Program 3 -->
       <div class="card">
         <div class="card-header">
-          <h3>3. Fibonacci Sequence</h3>
+          <h3>3. Count Vowels and Consonants</h3>
           <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         </div>
-        <pre><code>n = int(input("How many terms? "))
-n1, n2 = 0, 1
-count = 0
-while count < n:
-    print(n1, end=" ")
-    nth = n1 + n2
-    n1 = n2
-    n2 = nth
-    count += 1</code></pre>
+        <pre><code># Implement a program that accepts a string and counts the number of vowels and consonants
+
+# Enter a string
+text = input("Enter a string: ")
+
+# Convert the string to lower case
+text = text.lower()
+
+# Initialize counters
+vowel_count = 0
+consonant_count = 0
+
+# Define vowels
+vowels = "aeiou"
+
+# Count vowels and consonants
+for char in text:
+    if char.isalpha():
+        if char in vowels:
+            vowel_count += 1
+        else:
+            consonant_count += 1
+
+# Display the results
+print("Number of vowels:", vowel_count)
+print("Number of consonants:", consonant_count)</code></pre>
       </div>
 
-      <!-- Baaki 4 se 12 tak isi pattern me card div add kar lena -->
+      <!-- Program 4 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>4. Student Details Dictionary</h3>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><code># Create a dictionary to store student details
+students = {
+    "101": {"Name": "Abhishek", "age": 20, "grade": "A"},
+    "102": {"Name": "Aastha", "age": 21, "grade": "B"},
+    "103": {"Name": "Roshan", "age": 19, "grade": "A"}
+}
+
+# Enter a student ID
+student_id = input("Enter student ID to view details: ")
+
+# Display the details
+if student_id in students:
+    print("Student Details")
+    print("Name:", students[student_id]["Name"])
+    print("Age:", students[student_id]["age"])
+    print("Grade:", students[student_id]["grade"])
+else:
+    print("Student ID not found.")</code></pre>
+      </div>
+
+      <!-- Program 5 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>5. Break, Continue, and Pass Statements</h3>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><code>print("Demonstrating break:")
+
+for i in range(1, 6):
+    if i == 3:
+        print("Breaking the loop at i =", i)
+        break
+    print("i =", i)
+
+print("\nDemonstrating continue:")
+
+for i in range(1, 6):
+    if i == 3:
+        print("Skipping i =", i)
+        continue
+    print("i =", i)
+
+print("\nDemonstrating pass:")
+
+for i in range(1, 6):
+    if i == 3:
+        pass
+    print("This is a block at i =", i)
+    print("i =", i)</code></pre>
+      </div>
+
+      <!-- Program 6 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>6. NumPy Array Operations and Reshaping</h3>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><code>import numpy as np
+
+# Create a Numpy array
+array1 = np.array([1, 2, 3, 4, 5, 6])
+print("Array1:", array1)
+
+# Create another array
+array2 = np.array([10, 20, 30, 40, 50, 60])
+print("Array2:", array2)
+
+# Perform element-wise operations
+sum_array = array1 + array2
+diff_array = array1 - array2
+div_array = array1 / array2
+product_array = array1 * array2
+
+print("Element-wise Sum:", sum_array)
+print("Element-wise Difference:", diff_array)
+print("Element-wise Division:", div_array)
+print("Element-wise Product:", product_array)
+
+# Reshape the array (from 1D to 2D)
+reshape_array = array1.reshape(2, 3)
+print("Reshaped array1 (2x3):\n", reshape_array)</code></pre>
+      </div>
+
+      <!-- Program 7 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>7. Pandas Series (Indexing, Slicing, Querying)</h3>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><code>import pandas as pd
+
+# Create pandas Series
+marks = pd.Series(
+    [85, 90, 78, 92, 88],
+    index=["abhishek", "astha", "rohan", "maya", "mohan"]
+)
+
+print("Student marks series:\n", marks)
+
+# Indexing
+print("Marks of Astha:", marks["astha"])
+print("Mark at 2nd position (by position):", marks.iloc[2])
+
+# Slicing
+print("\nSlicing from Astha to Maya:\n", marks["astha":"maya"])
+print("\nSlicing first 3 students:\n", marks[:3])
+
+# Querying
+print("\nStudents with marks > 85:\n", marks[marks > 85])</code></pre>
+      </div>
+
+      <!-- Program 8 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>8. Pandas DataFrame (Sorting & Filtering)</h3>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><code>import pandas as pd
+
+# Create a dataset and save it as CSV
+data = {
+    "Name": ["Astha", "Abhishek", "Rohan", "Maya", "Mohan"],
+    "Marks": [85, 92, 78, 90, 88],
+    "Subject": ["Python", "OS", "CN", "Python", "OS"]
+}
+
+df = pd.DataFrame(data)
+df.to_csv("lab8.csv", index=False)
+
+# Load the dataset into Pandas DataFrame
+df = pd.read_csv("lab8.csv")
+
+print("Original DataFrame:\n", df)
+
+# Sorting by Marks in descending order
+sorted_df = df.sort_values(by="Marks", ascending=False)
+print("\nSorted DataFrame by Marks (Descending):\n", sorted_df)
+
+# Filtering students who scored more than 85
+filtered_df = df[df["Marks"] > 85]
+print("\nStudents with Marks > 85:\n", filtered_df)
+
+# Filtering students whose subject is Python
+filtered_df = df[df["Subject"] == "Python"]
+print("\nStudents with Python as elective:\n", filtered_df)</code></pre>
+      </div>
+
+      <!-- Program 9 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>9. Count Occurrences of Each Word</h3>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><code># Get input from the user
+text = input("Enter a string: ")
+
+words = text.lower().split()
+result = []
+
+for word in words:
+    if word not in result:
+        count = words.count(word)
+        print(word, ":", count)
+        result.append(word)</code></pre>
+      </div>
+
+      <!-- Program 10 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>10. List Operations (Insert, Delete, Update)</h3>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><code># Step 1: Create an initial list
+my_list = [10, 20, 30, 40, 50]
+print("Initial List:", my_list)
+
+# Step 2: Insert an element
+# Insert 25 at index 2
+my_list.insert(2, 25)
+print("After Inserting 25 at index 2:", my_list)
+
+# Step 3: Delete an element
+# Remove the value 40 from the list
+my_list.remove(40)
+print("After Deleting 40:", my_list)
+
+# Step 4: Update an element
+# Change the element at index 3 to 99
+my_list[3] = 99
+print("After Updating index 3 to 99:", my_list)</code></pre>
+      </div>
+
+      <!-- Program 11 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>11. Factorial Using Recursion</h3>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><code># Factorial using recursion
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# User input
+num = int(input("Enter a number: "))
+
+if num < 0:
+    print("Factorial is not defined for negative numbers.")
+else:
+    result = factorial(num)
+    print(f"Factorial of {num} is: {result}")</code></pre>
+      </div>
+
+      <!-- Program 12 -->
+      <div class="card">
+        <div class="card-header">
+          <h3>12. Matplotlib (Line Graph and Bar Chart)</h3>
+          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><code>import matplotlib.pyplot as plt
+
+# Sample data
+students = ['Abhishek', 'Astha', 'Chetan', 'Rohan']
+marks = [85, 92, 78, 88]
+
+# Line Graph
+plt.plot(students, marks, marker='o', color='blue', label='Marks')
+plt.title("Line Graph: Student Marks")
+plt.xlabel("Students")
+plt.ylabel("Marks")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# Bar Chart
+plt.bar(students, marks, color='green')
+plt.title("Bar Chart: Student Marks")
+plt.xlabel("Students")
+plt.ylabel("Marks")
+plt.tight_layout()
+plt.show()</code></pre>
+      </div>
 
     </div>
   </div>
